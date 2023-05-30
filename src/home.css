@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap');
+
+:root {
+    /* Colors */
+    --body-color: #EEF4F6;
+    --sidebar-color: #FFF;
+    --primary-color: #5F58A8;
+    --toggle-color: #DDD;
+    --text-color: #4E4E4E;
+    --primary-color-light: #F2F7F8;
+    --primary-font-color: #351C7D;
+}
+
+.home {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.welcome {
+    max-width: 30%;
+    margin-right: 5%;
+}
+
+.sidebar.close ~ .welcome {
+    margin-right: 0%;
+}
+
+
+.welcome header .heading {
+    font-size: 60px;
+    font-weight: 700;
+    color: var(--primary-font-color);
+    margin-bottom: 30px;
+}
+
+.slogan {
+    font-size: 14px;
+    opacity: 70%;
+    margin-bottom: 25px;
+}
+
+.divider {
+    height: 4px;
+    width: 110px;
+    background-color: var(--primary-color);
+    margin-bottom: 40px;
+}
+
+.checklist {
+    list-style: none;
+}
+
+img {
+    pointer-events: none;
+}
+
+.checklist li {
+    margin-bottom: 20px;
+}
+
+li .text {
+    font-size: 14px;
+}
+
+li .check {
+    color: var(--primary-font-color);
+    font-weight: bolder;
+}
+
+.start-button {
+    background-color: var(--primary-font-color);
+    padding: 17px 0px;
+    border-radius: 7px;
+    font-size: 17px;
+    font-weight: 500;
+    border: none;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+.start-text {
+    color: white;
+    padding: 17px 50px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.terms-button {
+    border: none;
+}
+
+.terms-text {
+    color: var(--primary-color);
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.terms-icon {
+    font-size: 18px;
+    color: var(--primary-color);
+}
