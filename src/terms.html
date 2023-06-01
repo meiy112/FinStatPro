@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSS -->
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="terms.css">
     <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
@@ -15,7 +16,7 @@
         <header>
             <div class="image-text">
                 <span class="image">
-                    <img src="" alt="logo">
+                    <img src="/src/assets/Logo.png" alt="logo">
                 </span>
 
                 <div class="text header-text">
@@ -73,7 +74,37 @@
 
     <section class="home">
         <div class="text">
-            Index
+            <header>
+                <div class="heading">
+                    <!-- === Heading === -->
+                    <div class="title">Index</div>
+                    <div class="info">For all your variable and formula definitions.</div>
+                </div>
+                <div class="search">
+                    <!-- === Searchbar === -->
+                    <div class="searchbar">
+                        <div class="search-input-container">
+                            <input type="text" class="search-input" placeholder="Type Something...">
+                        </div>
+                        <div class="search-button-container">
+                            <button type="button" class="search-button">
+                                <i class='bx bx-search'></i>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- === Select menu === -->
+                    <div class="select-container">
+                        <select name="select-box" id="select-box">
+                            <option value="0">All</option>
+                            <option value="1">Formulas</option>
+                            <option value="2">Variables</option>
+                        </select>
+                        <div class="icon-container">
+                            <i class='bx bx-chevron-down' ></i>
+                        </div>
+                    </div>
+                </div>
+            </header>
         </div>
     </section>
 

@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap');
+
+:root {
+    /* Colors */
+    --body-color: #EEF4F6;
+    --body-color-dark: E3EBEE;
+    --primary-color: #5F58A8;
+    --primary-font-color: #351C7D;
+
+    /* Transition */
+    --tran-02: all 0.2s ease;
+    --tran-03: all 0.3s ease;
+    --tran-04: all 0.4s ease;
+    --tran-05: all 0.5s ease;
+    --tran-05: all 0.6s ease;
+}
+
+.home {
+    padding: 30px;
+}
+
+.title {
+    font-size: 30px;
+    font-weight: bold;
+    color: var(--primary-font-color);
+}
+
+.heading .info {
+    font-size: 13px;
+    opacity: 60%;
+    font-weight: 400;
+    padding-top: 10px;
+    padding-bottom: 15px;
+}
+
+.search {
+    display: flex;
+    background-color: white;
+    padding: 15px;
+    border-radius: 5px;
+    justify-content: space-between;
+}
+
+.searchbar {
+    background-color: var(--body-color);
+    border-radius: 35px;
+    width: 85%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.search-input-container {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+}
+
+.search-input {
+    border: none;
+    background-color: transparent;
+    height: 50px;
+    width: 90%;
+}
+
+.search-input:focus {
+    outline: none;
+}
+
+
+.select-container {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    height: 50px;
+    width: 18%;
+    margin-left: 15%;
+}
+
+#select-box {
+    border: none;
+    appearance: none;
+    padding: 0 40px 0 20px;
+    width: 100%;
+    background-color: var(--body-color);
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.select-container .icon-container {
+    width: 50px;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.icon-container i {
+    font-size: 20px;
+}
+
+.search-button {
+    background-color: var(--primary-color);
+    height: 50px;
+    width: 60px;
+    border: none;
+    border-radius: 35px;
+    cursor: pointer;
+}
+
+.bx-search {
+    color: white;
+    font-size: 18px;
+}
