@@ -1,4 +1,5 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,10 +8,11 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="terms.css">
     <!-- Boxicons -->
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>S
 
     <title>FinStatPro</title>
 </head>
+
 <body>
     <nav class="sidebar">
         <header>
@@ -65,49 +67,190 @@
             </div>
 
             <div class="bottom-content">
-                    <a href="#">
-                        <i class='bx bx-info-circle info-icon'></i>
-                    </a>
+                <a href="#">
+                    <i class='bx bx-info-circle info-icon'></i>
+                </a>
             </div>
         </div>
     </nav>
 
     <section class="home">
-        <div class="text">
-            <header>
-                <div class="heading">
-                    <!-- === Heading === -->
-                    <div class="title">Index</div>
-                    <div class="info">For all your variable and formula definitions.</div>
-                </div>
-                <div class="search">
-                    <!-- === Searchbar === -->
-                    <div class="searchbar">
-                        <div class="search-input-container">
-                            <input type="text" class="search-input" placeholder="Type Something...">
-                        </div>
-                        <div class="search-button-container">
-                            <button type="button" class="search-button">
-                                <i class='bx bx-search'></i>
-                            </button>
-                        </div>
+        <header>
+            <div class="heading">
+                <!-- === Heading === -->
+                <div class="title">Index</div>
+                <div class="info">For all your variable and formula definitions.</div>
+            </div>
+            <div class="search">
+                <!-- === Searchbar === -->
+                <div class="searchbar">
+                    <div class="search-input-container">
+                        <input type="text" class="search-input" placeholder="Type Something...">
                     </div>
-                    <!-- === Select menu === -->
-                    <div class="select-container">
-                        <select name="select-box" id="select-box">
-                            <option value="0">All</option>
-                            <option value="1">Formulas</option>
-                            <option value="2">Variables</option>
-                        </select>
-                        <div class="icon-container">
-                            <i class='bx bx-chevron-down' ></i>
-                        </div>
+                    <div class="search-button-container">
+                        <button type="button" class="search-button">
+                            <i class='bx bx-search'></i>
+                        </button>
                     </div>
                 </div>
-            </header>
+                <!-- === Select menu === -->
+                <div class="select-container">
+                    <select name="select-box" id="select-box">
+                        <option value="0">All</option>
+                        <option value="1">Formulas</option>
+                        <option value="2">Variables</option>
+                    </select>
+                    <div class="icon-container">
+                        <i class='bx bx-chevron-down'></i>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- === Index === -->
+        <div class="terms">
+            <ul class="accordion">
+                <li class="term">
+                    <label for="asset">
+                        <span class="label-title">Asset:</span>
+                        <span class="label-summary">
+                            Resources owned or controlled by the business.
+                        </span>
+                    </label>
+                    <div class="content">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    </div>
+                </li>
+                <li class="term">
+                    <label for="breakeven">
+                        <span class="label-title">Breakeven:</span>
+                        <span class="label-summary">
+                            The point at which total cost and total revenue are equal.
+                        </span>
+                    </label>
+                    <div class="content">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    </div>
+                </li>
+                <li class="term">
+                    <label for="fixed-costs">
+                        <span class="label-title">Fixed Costs:</span>
+                        <span class="label-summary">
+                            Costs that remain constant with whatever amount of goods or services produced.
+                        </span>
+                    </label>
+                    <div class="content">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    </div>
+                </li>
+                <li class="term">
+                    <label for="gross-profit">
+                        <span class="label-title">Gross Profit:</span>
+                        <span class="label-summary">
+                            The profit a business makes after subtracting all of the costs.
+                        </span>
+                    </label>
+                    <div class="content">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    </div>
+                </li>
+                <li class="term">
+                    <label for="gross-profit-margin">
+                        <span class="label-title">Gross Profit Margin:</span>
+                        <span class="label-summary">
+                            The amount of profit made before deducting administrative costs.
+                        </span>
+                    </label>
+                    <div class="content">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    </div>
+                </li>
+                <li class="term">
+                    <label for="operating-profit-margin">
+                        <span class="label-title">Operating Profit Margin:</span>
+                        <span class="label-summary">
+                            The amount of profit a company makes on a dollar of sales after variable costs of production.
+                        </span>
+                    </label>
+                    <div class="content">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    </div>
+                </li>
+                <li class="term">
+                    <label for="return-on-equity">
+                        <span class="label-title">Return on Equity:</span>
+                        <span class="label-summary">
+                            Measures the performance of a company based on its average shareholder's equity.
+                        </span>
+                    </label>
+                    <div class="content">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    </div>
+                </li>
+                <li class="term">
+                    <label for="return-on-investment">
+                        <span class="label-title">Return on Investment:</span>
+                        <span class="label-summary">
+                            Evaluates the efficiency or profitability of an investment after "_" years.
+                        </span>
+                    </label>
+                    <div class="content">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    </div>
+                </li>
+                <li class="term">
+                    <label for="variable-cost">
+                        <span class="label-title">Variable Cost:</span>
+                        <span class="label-summary">
+                            Costs that change depending on whatever amount of goods or services are produced.
+                        </span>
+                    </label>
+                    <div class="content">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    </div>
+                </li>
+            </ul>
         </div>
     </section>
 
     <script src="script.js"></script>
+    <script src="terms.js"></script>
 </body>
+
 </html>

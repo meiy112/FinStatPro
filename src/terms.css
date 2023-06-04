@@ -3,7 +3,7 @@
 :root {
     /* Colors */
     --body-color: #EEF4F6;
-    --body-color-dark: E3EBEE;
+    --body-color-dark: #E3EBEE;
     --primary-color: #5F58A8;
     --primary-font-color: #351C7D;
 
@@ -16,18 +16,19 @@
 }
 
 .home {
-    padding: 30px;
+    padding: 20px 0px 30px 30px;
 }
 
+/* === Heading and Search === */
 .title {
-    font-size: 30px;
+    font-size: 35px;
     font-weight: bold;
     color: var(--primary-font-color);
 }
 
 .heading .info {
     font-size: 13px;
-    opacity: 60%;
+    opacity: 80%;
     font-weight: 400;
     padding-top: 10px;
     padding-bottom: 15px;
@@ -39,18 +40,23 @@
     padding: 15px;
     border-radius: 5px;
     justify-content: space-between;
+    filter: drop-shadow(1px 0px 2px #E7E7E7);
 }
 
 .searchbar {
     background-color: var(--body-color);
     border-radius: 35px;
-    width: 85%;
+    width: 100%;
     display: flex;
     justify-content: space-between;
 }
 
+.focused-searchbar {
+    background-color: var(--body-color-dark);
+}
+
 .search-input-container {
-    width: 90%;
+    width: 100%;
     display: flex;
     justify-content: center;
 }
@@ -59,7 +65,7 @@
     border: none;
     background-color: transparent;
     height: 50px;
-    width: 90%;
+    width: 93%;
 }
 
 .search-input:focus {
@@ -73,7 +79,7 @@
     position: relative;
     height: 50px;
     width: 18%;
-    margin-left: 15%;
+    margin-left: 10%;
 }
 
 #select-box {
@@ -84,6 +90,7 @@
     background-color: var(--body-color);
     border-radius: 15px;
     cursor: pointer;
+    outline: none;
 }
 
 .select-container .icon-container {
@@ -113,4 +120,71 @@
 .bx-search {
     color: white;
     font-size: 18px;
+}
+
+/* === Accordion === */
+.accordion {
+    background-color: white;
+    margin: 20px 0;
+    padding: 15px 0;
+    filter: drop-shadow(2px 2px 5px #e1e1e1);
+    border-radius: 5px;
+}
+
+.accordion li {
+    list-style: none;
+    width: 100%;
+    padding: 25px 0px;
+    cursor: pointer;
+}
+
+.accordion li label {
+    padding: 10px 50px;
+    pointer-events: none;
+}
+
+label .label-title {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+label .label-summary {
+    font-size: 13px;
+    font-weight: 400;
+    opacity: 90%;
+    padding-left: 5px;
+    position: relative;
+    top: 1px;
+}
+
+.label-title::before {
+    content: '+';
+    padding-right: 28px;
+    position: relative;
+    top: 3px;
+    font-size: 30px;
+    font-weight: 100;
+}
+
+.accordion .content {
+    opacity: 80%;
+    line-height: 26px;
+    max-height: 0;
+    overflow: hidden;
+    transition: var(--tran-05);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--body-color);
+}
+
+.accordion .clicked .content {
+    max-height: 400px;
+    background-color: var(--body-color);
+    margin-top: 30px;
+    padding: 30px 45px;
+    color: black;
+}
+
+.accordion .clicked .label-title::before {
+    content: '-';
 }
