@@ -1,6 +1,8 @@
 const terms = document.querySelectorAll('.term');
 const searchInput = document.querySelector('.search-input');
 const searchbar = document.querySelector('.searchbar');
+const searchButton = document.querySelector('.search-button');
+
 
 // Add event listener to expand labels
 for (var i = 0; i < terms.length; i++) {
@@ -9,6 +11,7 @@ for (var i = 0; i < terms.length; i++) {
         term.classList.toggle('clicked');
     })
 }
+
 
 //let searchbar filter terms
 searchInput.addEventListener('input', filterList);
@@ -20,6 +23,20 @@ searchInput.addEventListener('focus', () => {
 searchInput.addEventListener('focusout', () => {
     searchbar.classList.remove('focused-searchbar');
 })
+
+
+//button press unfocuses search input
+searchButton.addEventListener('click', () => {
+    searchInput.blur();
+})
+//enter key also triggers button press
+searchInput.addEventListener('keypress', function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault;
+        searchButton.click();
+    }
+})
+
 
 //function to filter terms based on searchbar input
 function filterList() {

@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap');
+
+:root {
+    /* Colors */
+    --body-color: #EEF4F6;
+    --body-color-dark: #E3EBEE;
+    --primary-color: #5F58A8;
+    --primary-font-color: #351C7D;
+    --calculation-color: #fff;
+
+    /* Transition */
+    --tran-02: all 0.2s ease;
+    --tran-03: all 0.3s ease;
+    --tran-04: all 0.4s ease;
+    --tran-05: all 0.5s ease;
+    --tran-05: all 0.6s ease;
+}
+
+.home {
+    margin: 35px 25px 30px 30px;
+}
+
+.title {
+    padding-top: 19px;
+    font-size: 35px;
+    font-weight: bold;
+    color: var(--primary-font-color);
+}
+
+.heading .info {
+    font-size: 13px;
+    opacity: 80%;
+    font-weight: 400;
+    padding-top: 10px;
+    padding-bottom: 15px;
+}
+
+.r-calculation {
+    list-style: none;
+    background-color: var(--calculation-color);
+    width: 180px;
+    height: 75px;
+    margin-right: 10px;
+    float: left;
+}
+
+.add-button {
+    background-color: var(--body-color-dark);
+}
