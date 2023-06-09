@@ -116,28 +116,68 @@
         <div class="recent-container">
             <ul class="recent-calculations">
                 <li class="r-calculation">
-
+                    <div class="r-title">Untitled</div>
+                    <div class="r-date">2023-06-22</div>
+                    <i class='bx bx-trash trash-icon'></i>
+                    <i class='bx bx-bookmark-alt save-icon'></i>
                 </li>
-                <li class="r-calculation">
-
+                <li class="r-calculation selected">
+                    <div class="r-title">Untitled</div>
+                    <div class="r-date">2023-06-22</div>
+                    <i class='bx bx-trash trash-icon'></i>
+                    <i class='bx bx-bookmark-alt save-icon'></i>
                 </li>
             </ul>
             <button class="add-button">
-
+                <i class='bx bx-plus'></i>
             </button>
         </div>
 
-        <!-- === current calculations === -->
-        <!-- <div class="current-container">
-            <ul class="current-calculations">
-                <li class="c-calculation">
-                    
+        <!-- === active calculations === -->
+        <div class="active-container">
+            <ul class="active-calculations">
+                <li class="a-calculation">
+                    <div class="indicator">
+                        <div class="ball"></div>
+                        <div class="line"></div>
+                    </div>
+
+                    <div class="title-date">
+                        <span class="a-title">Untitled</span>
+                        <span class="edit-icon-container">
+                            <i class='bx bx-edit-alt edit-icon'></i>
+                        </span>
+                        <div class="a-date">2023-06-22</div>
+                    </div>
+                    <i class='bx bx-dots-horizontal-rounded option-icon'></i>
+                    <div class="dropdown">
+                        <div class="save-button"></div>
+                        <div class="close-button"></div>
+                    </div>
+
+                    <div class="table">
+
+                    </div>
                 </li>
             </ul>
-        </div> -->
+        </div>
+
+        <!-- === Delete Calculation Popup === -->
+        <div class="delete-modal">
+            <div class="delete-heading">
+                <div class="delete-title">Delete Calculation?</div>
+                <div class="delete-info">This cannot be undone.</div>
+            </div>
+            <button class="cancel-button">Cancel</button>
+            <button class="delete-button">Delete</button>
+        </div>
+
+        <!-- === Overlay === -->
+        <div id="overlay"></div>
     </section>
 
     <script src="script.js"></script>
+    <script type="module" src="calculator.js"></script>
 </body>
 
 </html>

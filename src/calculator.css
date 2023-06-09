@@ -6,7 +6,9 @@
     --body-color-dark: #E3EBEE;
     --primary-color: #5F58A8;
     --primary-font-color: #351C7D;
+    --font-color-light: #474747;
     --calculation-color: #fff;
+    --border-color: #C4CED0;
 
     /* Transition */
     --tran-02: all 0.2s ease;
@@ -14,6 +16,11 @@
     --tran-04: all 0.4s ease;
     --tran-05: all 0.5s ease;
     --tran-05: all 0.6s ease;
+}
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 .home {
@@ -32,18 +39,266 @@
     opacity: 80%;
     font-weight: 400;
     padding-top: 10px;
-    padding-bottom: 15px;
+    padding-bottom: 25px;
 }
 
+/* === Recent Calculation === */
 .r-calculation {
     list-style: none;
-    background-color: var(--calculation-color);
     width: 180px;
-    height: 75px;
-    margin-right: 10px;
+    height: 72px;
+    margin: 0 10px 10px 0;
     float: left;
+    border-radius: 5px;
+    border: 2px solid var(--border-color);
+    color: var(--font-color-light);
+    padding: 12px 10px 10px 25px;
+    cursor: pointer;
 }
 
-.add-button {
+.r-calculation .r-title {
+    font-size: 14px;
+}
+
+.r-calculation .r-date {
+    font-size: 14px;
+    margin-top: 15px;
+}
+
+.r-calculation .trash-icon {
+    position: relative;
+    bottom: 23px;
+    left: 119px;
+    opacity: 80%;
+    padding: 8px;
+    border-radius: 10px;
+}
+
+.r-calculation .save-icon {
+    position: relative;
+    bottom: 55px;
+    left: 83px;
+    opacity: 80%;
+    padding: 8px;
+    border-radius: 10px;
+}
+
+.r-calculation.selected .trash-icon:hover,
+.r-calculation.selected .save-icon:hover {
     background-color: var(--body-color-dark);
+    color: var(--primary-font-color);
+}
+
+.r-calculation.selected {
+    background-color: var(--calculation-color);
+    filter: drop-shadow(1px 0px 2px #E7E7E7);
+    border: none;
+    pointer-events: none;
+}
+
+.r-calculation.selected .save-icon {
+    pointer-events: all;
+}
+
+.r-calculation.selected .trash-icon {
+    pointer-events: all;
+}
+
+.r-calculation.selected:before {
+    content: "";
+    background-color: var(--primary-color);
+    height: 72px;
+    width: 12px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    border-radius: 5px 0 0 5px;
+}
+
+/* === Button === */
+.add-button {
+    height: 72px;
+    width: 45px;
+    border-radius: 5px;
+    border: 2px solid var(--border-color);
+    background: linear-gradient(to left, transparent 50%, var(--primary-color) 50%) right;
+    background-size: 200% 100%;
+    cursor: pointer;
+    transition: var(--tran-03);
+}
+
+.add-button:hover {
+    border-color: var(--body-color);
+    background-position: left;
+}
+
+.add-button:hover i {
+    color: white;
+    opacity: 1;
+    transition: var(--tran-05);
+}
+
+.add-button i {
+    opacity: 50%;
+    font-size: 20px;
+}
+
+/* === Active Calculation === */
+.active-container {
+    display: inline-block;
+    align-items: baseline;
+    width: 99%;
+}
+
+.a-calculation {
+    background-color: var(--calculation-color);
+    margin: 10px 15px 15px 0;
+    width: 48%;
+    min-width: 400px;
+    min-height: 400px;
+    padding: 25px;
+    list-style: none;
+    float: left;
+    border-radius: 5px;
+}
+
+.indicator .ball {
+    background-color: var(--primary-color);
+    height: 12px;
+    width: 12px;
+    position: absolute;
+    border-radius: 50%;
+    margin-left: -7px;
+    margin-top: 4px;
+}
+
+.indicator .line {
+    height: 100px;
+    width: 6px;
+    position: absolute;
+    margin-top: 6px;
+    margin-left: -4px;
+    background: linear-gradient(var(--primary-color), transparent);
+}
+
+.title-date {
+    margin-left: 20px;
+
+}
+
+.title-date .a-title {
+    font-size: 19;
+    opacity: 97%;
+    font-weight: 400;
+}
+
+.edit-icon-container .edit-icon {
+    font-size: 14px;
+    opacity: 90%;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.title-date .a-date {
+    margin-top: 5px;
+    opacity: 70%;
+}
+
+.a-calculation .option-icon {
+    position: relative;
+    margin-top: -54px;
+    left: 95%;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 10px;
+}
+
+.a-calculation .option-icon:hover {
+    background-color: var(--body-color-dark);
+    color: var(--primary-font-color);
+}
+
+/* === Delete Calculation Popup === */
+.delete-modal {
+    position: fixed;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 200ms ease-in-out;
+    z-index: 110;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0.5rem 0.8rem rgba(0, 0, 0, 0.2);
+}
+
+.delete-modal.active {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.delete-modal .delete-heading {
+    margin: 35px 48px 28px 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete-modal .delete-heading .delete-title {
+    font-weight: 500;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.delete-modal .delete-heading .delete-info {
+    font-size: 12px;
+    font-weight: 200;
+}
+
+.delete-modal .cancel-button,
+.delete-modal .delete-button {
+    border: none;
+    width: 50%;
+    float: left;
+    height: 50px;
+    cursor: pointer;
+    transition: var(--tran-02);
+    box-shadow: inset 0 0 1px var(--border-color);
+}
+
+.delete-modal .cancel-button:hover,
+.delete-modal .delete-button:hover {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 500;
+}
+
+
+.delete-modal .cancel-button {
+    border-radius: 0 0 0 10px;
+}
+
+.delete-modal .delete-button {
+    border-radius: 0 0 10px 0;
+    background-color: var(--body-color-dark);
+    color: var(--primary-font-color);
+    font-weight: 500;
+}
+
+/* === Overlay === */
+#overlay {
+    position: fixed;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color:rgba(0, 0, 0, .5);
+    pointer-events: none;
+    transition: 200ms ease-in-out;
+    z-index: 109;
+}
+
+#overlay.active {
+    opacity: 1;
+    pointer-events: all;
 }
