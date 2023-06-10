@@ -4,12 +4,21 @@ const deleteRecentButtonList = document.querySelectorAll(".trash-icon"),
       addButton = document.querySelector(".add-button"),
       recentCalculations = document.querySelector(".recent-calculations"),
       activeCalculations = document.querySelector(".active-calculations"),
-      cancelButton = document.querySelector(".cancel-button");
+      cancelButton = document.querySelector(".cancel-button"),
+      optionButtonList = document.querySelectorAll(".option-icon");
+
+const idGenerator = {
+    id: 0,
+    getNewId: function() {
+        return this.id++;
+    } 
+}
 
 
+//List of all active calculations in recents
+const activeCalculationList = new Map();
 //List of all calculations in recents
-let calculationList = [];
-
+const recentCalculationList = new Map();
 
 // ===== ADD EVENT LISTENERS =====
 for (var i = 0; i < deleteRecentButtonList.length; i++) {
@@ -19,28 +28,48 @@ for (var i = 0; i < deleteRecentButtonList.length; i++) {
     })
 }
 
+for (var i = 0; i < optionButtonList.length; i++) {
+    let optionButton = optionButtonList[i];
+    optionButton.addEventListener("click", e => {
+        onOptionButtonClick(e);
+    })
+
+    optionButton.querySelector(".close-button").addEventListener("click", e => {
+        onCloseButtonClick(e);
+    })
+}
+
 addButton.addEventListener("click", () => {
+    onAddButtonClick();
+});
+
+cancelButton.addEventListener("click", () => {
+    onCancelButtonClick();
+})
+
+
+// ===== BUTTON FUNCTIONALITY =====
+function onAddButtonClick() {
     let date = new Date();
     let yyyy = date.getFullYear();
     let dd = String(date.getDate()).padStart(2, '0');
     let mm = String(date.getMonth() + 1).padStart(2, '0');
 
+    let id = idGenerator.getNewId();
+
     date = yyyy + '-' + mm + '-' + dd;
-    let calculation = new Calculation("Untitled", date)
+    let calculation = new Calculation("Untitled", date, id);
 
-    calculationList.push(calculation);
     addCalculation(calculation);
-});
+}
 
-cancelButton.addEventListener("click", () => {
+function onCancelButtonClick() {
     const modal = document.querySelector(".delete-modal");
     const overlay = document.getElementById("overlay");
     modal.classList.remove("active");
     overlay.classList.remove("active");
-})
+}
 
-
-// ===== BUTTON FUNCTIONALITY =====
 function onRecentDeleteButtonClick(e) {
     const modal = document.querySelector(".delete-modal");
     const overlay = document.getElementById("overlay");
@@ -55,6 +84,19 @@ function onRecentDeleteButtonClick(e) {
         modal.classList.remove("active");
         overlay.classList.remove("active");
     });
+}
+
+function onOptionButtonClick(e) {
+    const optionDropdown = e.target.querySelector(".option-dropdown");
+    optionDropdown.classList.toggle("active");
+}
+
+function onCloseButtonClick(e) {
+    let activeElement = e.target.closest(".a-calculation");
+    let activeValue = activeCalculationList.get(activeElement);
+    let recentElement = getByValue(recentCalculationList, activeValue);
+
+    
 }
 
 
@@ -85,7 +127,12 @@ function getActiveCalculationHtml() {
                         </span>
                         <div class="a-date">2023-06-22</div>
                     </div>
-                    <i class='bx bx-dots-horizontal-rounded option-icon'></i>
+                    <i class='bx bx-dots-horizontal-rounded option-icon'>
+                        <div class="option-dropdown">
+                            <div class="save-button">Save</div>
+                            <div class="close-button">Close</div>
+                        </div>
+                    </i>
 
                     <div class="table">
                         
@@ -103,7 +150,7 @@ function addCalculation(calculation) {
 
     row.querySelector(".trash-icon").addEventListener("click", e => {
         onRecentDeleteButtonClick(e);
-    })
+    });
 
     row.querySelector(".r-date").innerHTML = calculation.getCalculationDate();
     row.querySelector(".r-title").innerHTML = calculation.getTitle();
@@ -112,18 +159,24 @@ function addCalculation(calculation) {
         row.classList.add("selected");
         addActiveCalculation(calculation);
     }
+
+    recentCalculationList.set(row, calculation);
+    console.log(recentCalculationList);
 }
 
 function deleteCalculation(button) {
-    let index = getNodeIndex(button);
-    calculationList.splice(index, 1);
+    let recentElement = button.target.closest("li");
+    let recentValue = recentCalculationList.get(recentElement);
+    let activeElement = getByValue(activeCalculationList, recentValue);
 
-    console.log(calculationList);
+    recentCalculationList.delete(recentElement);
+    activeCalculationList.delete(activeElement);
 
-    button.target.closest("li").remove();
+    console.log(recentCalculationList);
+    console.log(activeCalculationList);
 
-    let activeList = document.querySelectorAll(".a-calculation");
-    activeList[index].remove();
+    activeElement.remove()
+    recentElement.remove();
 }
 
 function addActiveCalculation(calculation) {
@@ -133,6 +186,13 @@ function addActiveCalculation(calculation) {
 
     row.querySelector(".a-date").innerHTML = calculation.getCalculationDate();
     row.querySelector(".a-title").innerHTML = calculation.getTitle();
+
+    row.querySelector(".option-icon").addEventListener("click", e => {
+        onOptionButtonClick(e);
+    });
+
+    activeCalculationList.set(row, calculation);
+    console.log(activeCalculationList);
 }
 
 
@@ -148,13 +208,9 @@ function getNodeIndex(el) {
     return i;
 }
 
-
-// ===== SAVE AND LOAD =====
-
-//EFFECT: load all calculations in recent calculations list
-function loadCalculations(list) {
-    for (var i = 0; i < list.length; i++) {
-        let calculation = list[i];
-        addCalculation(calculation);
+function getByValue(map, searchValue) {
+    for (let [key, value] of map.entries()) {
+      if (value === searchValue)
+        return key;
     }
-}
+  }
