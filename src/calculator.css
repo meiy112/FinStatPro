@@ -6,6 +6,7 @@
     --body-color-dark: #E3EBEE;
     --primary-color: #5F58A8;
     --primary-font-color: #351C7D;
+    --primary-color-light: #F2F7F8;
     --font-color-light: #474747;
     --calculation-color: #fff;
     --border-color: #C4CED0;
@@ -24,14 +25,22 @@ html, body {
 }
 
 .home {
-    margin: 35px 25px 30px 30px;
+    margin: 54px 25px 30px 30px;
 }
 
 .title {
-    padding-top: 19px;
     font-size: 35px;
     font-weight: bold;
     color: var(--primary-font-color);
+}
+
+.help-calculator {
+    font-size: 16px;
+    color: var(--primary-font-color);
+    position: relative;
+    bottom: 1px;
+    margin-left: 3px;
+    cursor: pointer;
 }
 
 .heading .info {
@@ -53,11 +62,16 @@ html, body {
     border: 2px solid var(--border-color);
     color: var(--font-color-light);
     padding: 12px 10px 10px 25px;
-    cursor: pointer;
+    z-index: 0;
 }
 
 .r-calculation .r-title {
     font-size: 14px;
+    cursor: pointer;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 85%;
 }
 
 .r-calculation .r-date {
@@ -72,6 +86,8 @@ html, body {
     opacity: 80%;
     padding: 8px;
     border-radius: 10px;
+    z-index: 1;
+    cursor: pointer;
 }
 
 .r-calculation .save-icon {
@@ -81,6 +97,8 @@ html, body {
     opacity: 80%;
     padding: 8px;
     border-radius: 10px;
+    z-index: 1;
+    cursor: pointer;
 }
 
 .r-calculation.selected .trash-icon:hover,
@@ -93,15 +111,10 @@ html, body {
     background-color: var(--calculation-color);
     filter: drop-shadow(1px 0px 2px #E7E7E7);
     border: none;
+}
+
+.r-calculation.selected .r-title {
     pointer-events: none;
-}
-
-.r-calculation.selected .save-icon {
-    pointer-events: all;
-}
-
-.r-calculation.selected .trash-icon {
-    pointer-events: all;
 }
 
 .r-calculation.selected:before {
@@ -160,6 +173,7 @@ html, body {
     list-style: none;
     float: left;
     border-radius: 5px;
+    box-shadow: 0 0.3rem 2rem rgba(0, 0, 0, 0.01);
 }
 
 .indicator .ball {
@@ -216,6 +230,129 @@ html, body {
 .a-calculation .option-icon:hover {
     background-color: var(--body-color-dark);
     color: var(--primary-font-color);
+}
+
+/* === Active Calculation Options Dropdown === */
+.option-dropdown {
+    background-color: var(--calculation-color);
+    box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.2);
+    width: 120;
+    z-index: 10;
+    position: absolute;
+    right: 0%;
+    top: 32px;
+    border-radius: 5px;
+    overflow: hidden;
+    transform: scale(0);
+}
+
+.option-dropdown.active {
+    transform: scale(1);
+}
+
+.option-dropdown .save-button,
+.option-dropdown .close-button {
+    padding: 10px 15px 10px 10px;
+    width: 120;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.option-dropdown .save-button:hover,
+.option-dropdown .close-button:hover {
+    background-color: var(--primary-color-light);
+    color: var(--primary-font-color);
+}
+
+/* === Add Calculation Popup === */
+.add-modal {
+    position: fixed;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 150ms ease-in-out;
+    z-index: 110;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0.5rem 0.8rem rgba(0, 0, 0, 0.2);
+    padding: 25px;
+    max-width: 400px;
+    width: 80%;
+    overflow: hidden;
+}
+
+.add-modal.active {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.add-modal .add-heading {
+    padding-bottom: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.add-modal .add-heading .heading {
+    font-size: 21px;
+    font-weight: 300;
+    pointer-events: none;
+}
+
+.add-modal .add-heading .add-modal-cancel {
+    font-size: 24px;
+    font-weight: 100;
+    cursor: pointer;
+    opacity: 50%;
+}
+
+.add-modal .divider {
+    height: 2px;
+    width: 400px;
+    margin-bottom: 10px;
+    background-color: var(--primary-color);
+    opacity: 20%;
+    margin-left: -20px;
+}
+
+.add-modal .title-bar {
+    width: 100%;
+    background-color: var(--body-color);
+    border-radius: 35px;
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.add-modal .title-bar .title-input {
+    border: none;
+    background-color: transparent;
+    height: 50px;
+    width: 93%;
+    font-size: 15px;
+}
+
+.add-modal .title-bar .title-input:focus {
+    outline: none;
+}
+
+.add-modal-button-container {
+    margin-top: 15px;
+    display: flex;
+    justify-content: end;
+}
+
+.add-modal-button {
+    cursor: pointer;
+    border: none;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 14px 35px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 15px;
 }
 
 /* === Delete Calculation Popup === */

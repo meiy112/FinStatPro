@@ -1,20 +1,48 @@
-const terms = document.querySelectorAll('.term');
-const searchInput = document.querySelector('.search-input');
-const searchbar = document.querySelector('.searchbar');
-const searchButton = document.querySelector('.search-button');
+const terms = document.querySelectorAll('.term'),
+    searchInput = document.querySelector('.search-input'),
+    searchbar = document.querySelector('.searchbar'),
+    searchButton = document.querySelector('.search-button'),
+    labelStars = document.querySelectorAll('.label-star'),
+    selectBox = document.querySelector('#select-box');
 
 
-// Add event listener to expand labels
+//===== ADD EVENT LISTENERS =====
+// to expand labels
 for (var i = 0; i < terms.length; i++) {
     let term = terms[i];
-    terms[i].addEventListener("click", () => {
-        term.classList.toggle('clicked');
+    term.addEventListener("click", (e) => {
+        onTermClick(term, e);
     })
-}
+};
+
+for (var i = 0; i < labelStars.length; i++) {
+    let star = labelStars[i];
+    star.addEventListener("click", () => {
+        onLabelStarClick(star);
+    })
+};
 
 
 //let searchbar filter terms
 searchInput.addEventListener('input', filterList);
+
+selectBox.addEventListener('change', function () {
+    if (this.value == "all") {
+        terms.forEach((item) => {
+            item.style.display = '';
+        });
+    }
+
+    if (this.value == "starred") {
+        terms.forEach((item) => {
+            if (item.classList.contains("starred")) {
+                item.style.display = '';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    }
+});
 
 //change colour of searchbar background when text input is focused
 searchInput.addEventListener('focus', () => {
@@ -30,7 +58,7 @@ searchButton.addEventListener('click', () => {
     searchInput.blur();
 })
 //enter key also triggers button press
-searchInput.addEventListener('keypress', function(event) {
+searchInput.addEventListener('keypress', function (event) {
     if (event.key === "Enter") {
         event.preventDefault;
         searchButton.click();
@@ -38,7 +66,8 @@ searchInput.addEventListener('keypress', function(event) {
 })
 
 
-//function to filter terms based on searchbar input
+// ===== FUNCTIONS ====
+//filter terms based on searchbar input
 function filterList() {
     const filter = searchInput.value.toLowerCase();
 
@@ -51,4 +80,31 @@ function filterList() {
             item.style.display = 'none';
         }
     });
+}
+
+function onTermClick(term, e) {
+    let wasStarClicked = false;
+    for (var i = 0; i < labelStars.length; i++) {
+        if (e.target == labelStars[i]) {
+            wasStarClicked = true;
+        }
+    }
+
+    if (!wasStarClicked) {
+        term.classList.toggle('clicked');
+    }
+}
+
+function onLabelStarClick(star) {
+    let term = star.closest("li");
+
+    if (term.classList.contains("starred") && !star.classList.contains("bx-star")) {
+        term.classList.remove("starred");
+        star.classList.remove("bxs-star");
+        star.classList.add("bx-star");
+    } else {
+        term.classList.add("starred");
+        star.classList.remove("bx-star");
+        star.classList.add("bxs-star");
+    }
 }

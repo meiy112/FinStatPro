@@ -1,23 +1,28 @@
 import Calculation from "./Calculation.js";
 
 const deleteRecentButtonList = document.querySelectorAll(".trash-icon"),
-      addButton = document.querySelector(".add-button"),
-      recentCalculations = document.querySelector(".recent-calculations"),
-      activeCalculations = document.querySelector(".active-calculations"),
-      cancelButton = document.querySelector(".cancel-button"),
-      optionButtonList = document.querySelectorAll(".option-icon");
+    addButton = document.querySelector(".add-button"),
+    recentCalculations = document.querySelector(".recent-calculations"),
+    activeCalculations = document.querySelector(".active-calculations"),
+    cancelButton = document.querySelector(".cancel-button"),
+    optionButtonList = document.querySelectorAll(".option-icon"),
+    addModalButton = document.querySelector(".add-modal-button"),
+    cancelModalButton = document.querySelector(".add-modal-cancel"),
+    addModal = document.querySelector(".add-modal"),
+    overlay = document.getElementById("overlay"),
+    deleteModal = document.querySelector(".delete-modal");
 
 const idGenerator = {
     id: 0,
-    getNewId: function() {
+    getNewId: function () {
         return this.id++;
-    } 
+    }
 }
 
 
-//List of all active calculations in recents
+//activeCalculationList(element, Calculation); all active elements
 const activeCalculationList = new Map();
-//List of all calculations in recents
+//recentCalculationList(element, Calculation); all elements
 const recentCalculationList = new Map();
 
 // ===== ADD EVENT LISTENERS =====
@@ -47,9 +52,25 @@ cancelButton.addEventListener("click", () => {
     onCancelButtonClick();
 })
 
+addModalButton.addEventListener("click", () => {
+    onAddModalButtonClick();
+})
+
+cancelModalButton.addEventListener("click", () => {
+    onCancelModalButtonClick();
+})
+
 
 // ===== BUTTON FUNCTIONALITY =====
 function onAddButtonClick() {
+    addModal.classList.add("active");
+    overlay.classList.add("active");
+}
+
+function onAddModalButtonClick() {
+    const titleInput = document.querySelector(".title-input");
+    let title = titleInput.value;
+
     let date = new Date();
     let yyyy = date.getFullYear();
     let dd = String(date.getDate()).padStart(2, '0');
@@ -58,9 +79,17 @@ function onAddButtonClick() {
     let id = idGenerator.getNewId();
 
     date = yyyy + '-' + mm + '-' + dd;
-    let calculation = new Calculation("Untitled", date, id);
+    let calculation = new Calculation(title, date, id);
 
     addCalculation(calculation);
+    onCancelModalButtonClick();
+}
+
+function onCancelModalButtonClick() {
+    addModal.classList.remove("active");
+    overlay.classList.remove("active");
+    const titleInput = document.querySelector(".title-input");
+    titleInput.value = "";
 }
 
 function onCancelButtonClick() {
@@ -71,9 +100,7 @@ function onCancelButtonClick() {
 }
 
 function onRecentDeleteButtonClick(e) {
-    const modal = document.querySelector(".delete-modal");
-    const overlay = document.getElementById("overlay");
-    modal.classList.add("active");
+    deleteModal.classList.add("active");
     overlay.classList.add("active");
 
     let oldDeleteButton = document.querySelector(".delete-button");
@@ -81,22 +108,42 @@ function onRecentDeleteButtonClick(e) {
     oldDeleteButton.parentNode.replaceChild(newDeleteButton, oldDeleteButton);
     newDeleteButton.addEventListener("click", () => {
         deleteCalculation(e);
-        modal.classList.remove("active");
+        deleteModal.classList.remove("active");
         overlay.classList.remove("active");
     });
 }
 
 function onOptionButtonClick(e) {
+    try {
     const optionDropdown = e.target.querySelector(".option-dropdown");
     optionDropdown.classList.toggle("active");
+    } catch (e) {
+        //dunno why its throwing an error but whatever lol
+    }
 }
 
 function onCloseButtonClick(e) {
-    let activeElement = e.target.closest(".a-calculation");
+    let activeElement = e.target.closest("li");
     let activeValue = activeCalculationList.get(activeElement);
     let recentElement = getByValue(recentCalculationList, activeValue);
 
-    
+    activeCalculationList.delete(activeElement);
+
+    recentCalculationList.get(recentElement).setIsActiveFalse();
+    console.log(recentCalculationList);
+
+    activeElement.remove();
+    recentElement.classList.remove("selected");
+}
+
+function onRecentElementClick(recentElement) {
+    let recentValue = recentCalculationList.get(recentElement);
+
+    recentElement.classList.add("selected");
+
+    recentValue.setIsActiveTrue();
+
+    addActiveCalculation(recentValue);
 }
 
 
@@ -104,7 +151,7 @@ function onCloseButtonClick(e) {
 function getCalculationHtml() {
     return `
     <li class="r-calculation">
-        <div class="r-title">Untitled</div>
+        <p class="r-title">Untitled</p>
         <div class="r-date">2023-06-22</div>
         <i class='bx bx-trash trash-icon' ></i>
         <i class='bx bx-bookmark-alt save-icon' ></i>
@@ -146,59 +193,69 @@ function getActiveCalculationHtml() {
 function addCalculation(calculation) {
     recentCalculations.insertAdjacentHTML("beforeend", getCalculationHtml());
 
-    const row = document.querySelector(".recent-calculations li:last-of-type");
+    const el = document.querySelector(".recent-calculations li:last-of-type");
 
-    row.querySelector(".trash-icon").addEventListener("click", e => {
+    el.querySelector(".trash-icon").addEventListener("click", e => {
         onRecentDeleteButtonClick(e);
     });
 
-    row.querySelector(".r-date").innerHTML = calculation.getCalculationDate();
-    row.querySelector(".r-title").innerHTML = calculation.getTitle();
+    el.querySelector(".r-date").innerHTML = calculation.getCalculationDate();
+    el.querySelector(".r-title").innerHTML = calculation.getTitle();
 
     if (calculation.getIsActive()) {
-        row.classList.add("selected");
+        el.classList.add("selected");
         addActiveCalculation(calculation);
     }
 
-    recentCalculationList.set(row, calculation);
+    el.querySelector(".r-title").addEventListener("click", () => {
+        onRecentElementClick(el);
+    })
+
+    recentCalculationList.set(el, calculation);
     console.log(recentCalculationList);
 }
 
 function deleteCalculation(button) {
     let recentElement = button.target.closest("li");
     let recentValue = recentCalculationList.get(recentElement);
-    let activeElement = getByValue(activeCalculationList, recentValue);
-
-    recentCalculationList.delete(recentElement);
-    activeCalculationList.delete(activeElement);
 
     console.log(recentCalculationList);
     console.log(activeCalculationList);
 
-    activeElement.remove()
+    if (recentValue.getIsActive()) {
+        let activeElement = getByValue(activeCalculationList, recentValue);
+        activeElement.remove()
+        activeCalculationList.delete(activeElement);
+    }
+
+    recentCalculationList.delete(recentElement);
     recentElement.remove();
 }
 
 function addActiveCalculation(calculation) {
     activeCalculations.insertAdjacentHTML("beforeend", getActiveCalculationHtml());
 
-    const row = document.querySelector(".active-calculations li:last-of-type");
+    const el = document.querySelector(".active-calculations li:last-of-type");
 
-    row.querySelector(".a-date").innerHTML = calculation.getCalculationDate();
-    row.querySelector(".a-title").innerHTML = calculation.getTitle();
+    el.querySelector(".a-date").innerHTML = calculation.getCalculationDate();
+    el.querySelector(".a-title").innerHTML = calculation.getTitle();
 
-    row.querySelector(".option-icon").addEventListener("click", e => {
+    el.querySelector(".option-icon").addEventListener("click", e => {
         onOptionButtonClick(e);
     });
 
-    activeCalculationList.set(row, calculation);
+    el.querySelector(".close-button").addEventListener("click", e => {
+        onCloseButtonClick(e);
+    })
+
+    activeCalculationList.set(el, calculation);
     console.log(activeCalculationList);
 }
 
 
 // ===== MISC =====
 
-//EFFECT: returns index of element in list
+//returns index of element in list
 function getNodeIndex(el) {
     let i = 0;
     while (el.previousElementSibling) {
@@ -210,7 +267,7 @@ function getNodeIndex(el) {
 
 function getByValue(map, searchValue) {
     for (let [key, value] of map.entries()) {
-      if (value === searchValue)
-        return key;
+        if (value === searchValue)
+            return key;
     }
-  }
+}

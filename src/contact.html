@@ -1,21 +1,17 @@
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSS -->
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="calculator.css">
+    <link rel="stylesheet" href="contact.css">
     <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
-    <title>FinStatPro</title>
+    <title>Contact</title>
 </head>
-
 <body>
-    <!-- === Side navbar === -->
-    <nav class="sidebar">
+     <!-- === Side navbar === -->
+     <nav class="sidebar">
         <header>
             <div class="image-text">
                 <span class="image">
@@ -55,7 +51,7 @@
                     </div>
 
                     <div class="link-group">
-                        <li class="nav-link selected">
+                        <li class="nav-link">
                             <a href="/src/calculator.html">
                                 <i class='bx bx-calculator icon'></i>
                                 <span class="text nav-text">Calculator</span>
@@ -79,7 +75,7 @@
                     </div>
 
                     <div class="link-group">
-                        <li class="nav-link">
+                        <li class="nav-link selected">
                             <a href="/src/contact.html">
                                 <i class='bx bx-conversation icon'></i>
                                 <span class="text nav-text">Contact</span>
@@ -104,66 +100,9 @@
 
     <!-- === Main Page === -->
     <section class="home">
-        <header>
-            <div class="heading">
-                <!-- === Heading === -->
-                <span class="title">Calculator</span> <i class='bx bx-help-circle help-calculator'></i>
-                <div class="info">For all your variable and formula definitions.</div>
-            </div>
-        </header>
-
-        <!-- === recent calculations === -->
-        <div class="recent-container">
-            <ul class="recent-calculations">
-                <li class="recent-empty">
-                    Add new calculation
-                </li>
-            </ul>
-            <button class="add-button">
-                <i class='bx bx-plus'></i>
-            </button>
-        </div>
-
-        <!-- === active calculations === -->
-        <div class="active-container">
-            <ul class="active-calculations">
-
-            </ul>
-        </div>
-
-        <!-- === Add Calculation Popup === -->
-        <div class="add-modal">
-            <div class="add-heading">
-                <div class="heading">Add Calculation</div>
-                <i class='bx bx-x add-modal-cancel'></i>
-            </div>
-            <div class="divider"></div>
-            <div class="add-inputs">
-                <div class="title-bar">
-                    <input type="text" placeholder="Title" class="title-input">
-                </div>
-            </div>
-            <div class="add-modal-button-container">
-                <button class="add-modal-button">Save</button>
-            </div>
-        </div>
-
-        <!-- === Delete Calculation Popup === -->
-        <div class="delete-modal">
-            <div class="delete-heading">
-                <div class="delete-title">Delete Calculation?</div>
-                <div class="delete-info">This cannot be undone.</div>
-            </div>
-            <button class="cancel-button">Cancel</button>
-            <button class="delete-button">Delete</button>
-        </div>
-
-        <!-- === Overlay === -->
-        <div id="overlay"></div>
     </section>
 
     <script src="script.js"></script>
-    <script type="module" src="calculator.js"></script>
+    <script type="module" src="contact.js"></script>
 </body>
-
 </html>
