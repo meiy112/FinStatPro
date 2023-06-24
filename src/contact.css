@@ -1,0 +1,185 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap');
+
+:root {
+    /* Colors */
+    --body-color: #EEF4F6;
+    --body-color-dark: #E3EBEE;
+    --primary-color: #5F58A8;
+    --primary-font-color: #351C7D;
+    --primary-color-light: #F2F7F8;
+    --font-color-light: #474747;
+    --main-color: #fff;
+    --border-color: #C4CED0;
+    --border-color-light: #ECEDF5;
+
+    /* Transition */
+    --tran-02: all 0.2s ease;
+    --tran-03: all 0.3s ease;
+    --tran-04: all 0.4s ease;
+    --tran-05: all 0.5s ease;
+    --tran-05: all 0.6s ease;
+}
+
+.home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container {
+    width: 50%;
+}
+
+.form {
+    background-color: var(--main-color);
+    width: 100%;
+    min-width: 400px;
+    padding: 35px;
+    border-radius: 10px;
+    box-shadow: 0 0.3rem 2rem rgba(0, 0, 0, 0.01);
+}
+
+.input-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.heading {
+    width: 100%;
+}
+
+.heading h1 {
+    margin-bottom: 10px;
+    font-size: 35px;
+    color: var(--primary-font-color);
+    font-weight: bold;
+}
+
+.heading p {
+    font-weight: 400;
+    font-size: 13px;
+    margin-bottom: 30px;
+    opacity: 80%;
+}
+
+/* ===== NAME, EMAIL, PHONE ===== */
+.name-email-phone {
+    width: 47%;
+}
+
+.form .container {
+    float: left;
+    height: 40px;
+    border: 2px solid var(--border-color-light);
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    border-radius: 7px;
+    width: 100%;
+    margin-bottom: 25px;
+}
+
+.form .selected {
+    border: 2px solid var(--primary-color);
+}
+
+.name-email-phone input {
+    height: 100%;
+    border: none;
+    width: 80%;
+}
+
+.name-email-phone input:focus {
+    outline: none;
+}
+
+.form .name-email-phone i {
+    font-size: 19px;
+    margin-left: 5px;
+    margin-right: 8px;
+    opacity: 50%;
+}
+
+.form .selected i {
+    color: var(--primary-color);
+    opacity: 1;
+}
+
+.form .label {
+    font-size: 13px;
+    margin-bottom: 7px;
+    font-weight: 500;
+}
+
+/* ===== MESSAGE ===== */
+.message-container {
+    width: 47%;
+}
+
+.message-container .message {
+    border: 2px solid var(--border-color-light);
+    width: 100%;
+    height: 215px;
+    border-radius: 7px;
+    padding: 10px 15px;
+}
+
+.message-container .message:focus {
+    outline: none;
+}
+
+.message-container .selected {
+    border: 2px solid var(--primary-color);
+}
+
+/* ===== TYPE OF INQUERY ===== */
+.services-container {
+    margin-bottom: 40px;
+}
+
+.services-container .label {
+    margin-bottom: 20px;
+}
+
+.services-container input[type="radio"] {
+    display: none;
+}
+
+.services-container label {
+    font-size: 13px;
+    border-radius: 7px;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.services-container label span {
+    opacity: 80%;
+    font-weight: 500;
+    padding: 10px 20px;
+    border: 2px solid var(--border-color-light);
+    border-radius: 7px;
+}
+
+.services-container input[type="radio"]:checked ~ * {
+    opacity: 1;
+    font-weight: bold;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-font-color);
+}
+
+/* ===== SEND BUTTON ===== */
+.button-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.submit-btn {
+    background-color: var(--primary-color);
+    border: none;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 7px;
+    font-weight: 500;
+    cursor: pointer;
+}

@@ -1,17 +1,22 @@
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="master.css">
     <link rel="stylesheet" href="contact.css">
     <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <title>Contact</title>
+
+    <title>FinStatPro</title>
 </head>
+
 <body>
-     <!-- === Side navbar === -->
-     <nav class="sidebar">
+    <!-- === Side navbar === -->
+    <nav class="sidebar">
         <header>
             <div class="image-text">
                 <span class="image">
@@ -100,9 +105,76 @@
 
     <!-- === Main Page === -->
     <section class="home">
+        <div class="form-container">
+            <div class="heading">
+                <h1>Get In Touch</h1>
+                <p>
+                    No matter the inquery, we'd love to hear from you!
+                </p>
+            </div>
+            <div class="form">
+                <form id="contact-form">
+                    <!-- Inputs -->
+                    <div class="input-container">
+                        <div class="name-email-phone">
+                            <!-- Name -->
+                            <div class="label">Your Name</div>
+                            <div class="container">
+                                <i class='bx bx-user'></i>
+                                <input type="text" name="name" id="name" placeholder="Name..." required />
+                            </div>
+                            <!-- Email -->
+                            <div class="label">Email</div>
+                            <div class="container">
+                                <i class='bx bx-envelope'></i>
+                                <input type="email" name="email" id="email" placeholder="Email..." required />
+                            </div>
+                            <!-- Phone -->
+                            <div class="label">Phone</div>
+                            <div class="container">
+                                <i class='bx bx-mobile-alt'></i>
+                                <input type="tel" name="phone" id="phone" placeholder="Phone..." />
+                            </div>
+                        </div>
+                        <!-- Message -->
+                        <div class="message-container">
+                            <div class="label">Message</div>
+                            <textarea class="message" name="message" cols="30" rows="10" placeholder="Your message..."
+                                required></textarea>
+                        </div>
+                    </div>
+                    <!-- Type of Inquery -->
+                    <div class="services-container">
+                        <div class="label">Inquery Type</div>
+                        <label>
+                            <input type="radio" name="services" class="question">
+                            <span>Question</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="services" class="suggestion">
+                            <span>Suggestion</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="services" class="bug-report">
+                            <span>Bug Report</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="services" class="other">
+                            <span>Other</span>
+                        </label>
+                    </div>
+                    <!-- Submit Button -->
+                    <div class="button-container">
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </section>
 
     <script src="script.js"></script>
     <script type="module" src="contact.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 </body>
+
 </html>
