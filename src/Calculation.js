@@ -1,3 +1,5 @@
+import Spreadsheet from "./Spreadsheet.js";
+
 export default class Calculation {
 
     constructor(title, date, id) {
@@ -5,6 +7,7 @@ export default class Calculation {
         this.date = date;
         this.isActive = true;
         this.id = id;
+        this.spreadsheet = new Spreadsheet();
     }
 
     getTitle() {
@@ -21,6 +24,10 @@ export default class Calculation {
 
     getId() {
         return this.id;
+    }
+
+    getSpreadsheet() {
+        return this.spreadsheet;
     }
 
     setIsActiveFalse() {

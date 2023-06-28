@@ -5,18 +5,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- CSS -->
-    <link rel="stylesheet" href="master.css">
-    <link rel="stylesheet" href="calculator.css">
     <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
     <title>FinStatPro</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="master.css">
+    <link rel="stylesheet" href="calculator.css">
 </head>
 
 <body>
     <!-- === Side navbar === -->
-    <nav class="sidebar">
+    <nav class="sidebar css-transitions-only-after-page-load">
         <header>
             <div class="image-text">
                 <span class="image">
@@ -109,15 +109,16 @@
             <div class="heading">
                 <!-- === Heading === -->
                 <span class="title">Calculator</span> <i class='bx bx-help-circle help-calculator'></i>
-                <div class="info">For all your variable and formula definitions.</div>
+                <div class="info">Create, save, and export effortless financial statements at ease.</div>
             </div>
         </header>
 
         <!-- === recent calculations === -->
         <div class="recent-container">
             <ul class="recent-calculations">
-                <li class="recent-empty">
-                    Add new calculation
+                <li id="recent-empty">
+                    <span>First time calculating?</span>
+                    <button id="recent-empty-btn">Let's get started.</button>
                 </li>
             </ul>
             <button class="add-button">
@@ -128,7 +129,10 @@
         <!-- === active calculations === -->
         <div class="active-container">
             <ul class="active-calculations">
-
+                <li id="active-empty">
+                    <i class='bx bx-copy-alt'></i>
+                    <div>No selected calculations.</div>
+                </li>
             </ul>
         </div>
 
@@ -138,7 +142,6 @@
                 <div class="heading">Add Calculation</div>
                 <i class='bx bx-x add-modal-cancel'></i>
             </div>
-            <div class="divider"></div>
             <div class="add-inputs">
                 <div class="title-bar">
                     <input type="text" placeholder="Title" class="title-input">
@@ -163,7 +166,7 @@
         <div id="overlay"></div>
     </section>
 
-    <script src="script.js"></script>
+    <script src="master.js"></script>
     <script type="module" src="calculator.js"></script>
 </body>
 

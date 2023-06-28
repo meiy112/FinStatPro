@@ -1,4 +1,5 @@
 import Calculation from "./Calculation.js";
+import Statement from "./Statement.js";
 
 const deleteRecentButtonList = document.querySelectorAll(".trash-icon"),
     addButton = document.querySelector(".add-button"),
@@ -10,7 +11,10 @@ const deleteRecentButtonList = document.querySelectorAll(".trash-icon"),
     cancelModalButton = document.querySelector(".add-modal-cancel"),
     addModal = document.querySelector(".add-modal"),
     overlay = document.getElementById("overlay"),
-    deleteModal = document.querySelector(".delete-modal");
+    deleteModal = document.querySelector(".delete-modal"),
+    recentEmptyElement = document.querySelector("#recent-empty"),
+    activeEmptyElement = document.querySelector("#active-empty"),
+    recentEmptyButton = document.querySelector("#recent-empty-btn");
 
 const idGenerator = {
     id: 0,
@@ -19,11 +23,15 @@ const idGenerator = {
     }
 }
 
+// ===== INIT =====
 
 //activeCalculationList(element, Calculation); all active elements
 const activeCalculationList = new Map();
 //recentCalculationList(element, Calculation); all elements
 const recentCalculationList = new Map();
+
+init();
+
 
 // ===== ADD EVENT LISTENERS =====
 for (var i = 0; i < deleteRecentButtonList.length; i++) {
@@ -59,6 +67,12 @@ addModalButton.addEventListener("click", () => {
 cancelModalButton.addEventListener("click", () => {
     onCancelModalButtonClick();
 })
+
+recentEmptyButton.addEventListener("click", () => {
+    onAddButtonClick();
+})
+
+
 
 
 // ===== BUTTON FUNCTIONALITY =====
@@ -134,6 +148,8 @@ function onCloseButtonClick(e) {
 
     activeElement.remove();
     recentElement.classList.remove("selected");
+
+    updateActive();
 }
 
 function onRecentElementClick(recentElement) {
@@ -144,6 +160,33 @@ function onRecentElementClick(recentElement) {
     recentValue.setIsActiveTrue();
 
     addActiveCalculation(recentValue);
+}
+
+
+// ===== OTHER FUNCTIONS =====
+function init() {
+    updateRecents();
+    updateActive();
+}
+
+function updateRecents() {
+    let isInactive = recentEmptyElement.classList.contains("inactive");
+
+    if (recentCalculationList.size === 0) {
+        recentEmptyElement.classList.remove("inactive");
+    } else if (!isInactive) {
+        recentEmptyElement.classList.add("inactive");
+    }
+}
+
+function updateActive() {
+    let isInactive = activeEmptyElement.classList.contains("inactive");
+
+    if (activeCalculationList.size === 0) {
+        activeEmptyElement.classList.remove("inactive");
+    } else if (!isInactive) {
+        activeEmptyElement.classList.add("inactive");
+    }
 }
 
 
@@ -212,15 +255,14 @@ function addCalculation(calculation) {
     })
 
     recentCalculationList.set(el, calculation);
-    console.log(recentCalculationList);
+
+    updateRecents();
+    updateActive();
 }
 
 function deleteCalculation(button) {
     let recentElement = button.target.closest("li");
     let recentValue = recentCalculationList.get(recentElement);
-
-    console.log(recentCalculationList);
-    console.log(activeCalculationList);
 
     if (recentValue.getIsActive()) {
         let activeElement = getByValue(activeCalculationList, recentValue);
@@ -230,6 +272,9 @@ function deleteCalculation(button) {
 
     recentCalculationList.delete(recentElement);
     recentElement.remove();
+
+    updateRecents();
+    updateActive();
 }
 
 function addActiveCalculation(calculation) {
@@ -249,21 +294,12 @@ function addActiveCalculation(calculation) {
     })
 
     activeCalculationList.set(el, calculation);
-    console.log(activeCalculationList);
+
+    updateActive();
 }
 
 
 // ===== MISC =====
-
-//returns index of element in list
-function getNodeIndex(el) {
-    let i = 0;
-    while (el.previousElementSibling) {
-        el = el.previousElementSibling;
-        i++;
-    }
-    return i;
-}
 
 function getByValue(map, searchValue) {
     for (let [key, value] of map.entries()) {

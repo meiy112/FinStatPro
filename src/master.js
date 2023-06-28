@@ -32,3 +32,10 @@ modeToggle.addEventListener("click", () => {
         localStorage.setItem("mode", "light");
     }
 });
+
+//for css-transitions-only-after-page-load class
+$(document).ready(function () {
+    $(".css-transitions-only-after-page-load").each(function (index, element) {
+        setTimeout(function () { $(element).removeClass("css-transitions-only-after-page-load") }, 10);
+    });
+});

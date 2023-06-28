@@ -10,6 +10,7 @@
     --font-color-light: #474747;
     --calculation-color: #fff;
     --border-color: #C4CED0;
+    --border-color-light: #DBDBE3;
 
     /* Transition */
     --tran-02: all 0.2s ease;
@@ -52,6 +53,37 @@ html, body {
 }
 
 /* === Recent Calculation === */
+#recent-empty {
+    list-style: none;
+    width: 180px;
+    height: 72px;
+    margin: 0 10px 10px 0;
+    float: left;
+    border: 2px dashed var(--primary-color);
+    text-align: center;
+    border-radius: 5px;
+    padding-top: 13px;
+}
+
+#recent-empty.inactive {
+    display: none;
+}
+
+#recent-empty span {
+    font-weight: 600;
+    color: var(--font-color-light);
+    font-size: 13px;
+    opacity: 90%;
+}
+
+#recent-empty button {
+    font-size: 11px;
+    border: none;
+    background-color: transparent;
+    color: var(--primary-font-color);
+    cursor: pointer;
+}
+
 .r-calculation {
     list-style: none;
     width: 180px;
@@ -62,7 +94,6 @@ html, body {
     border: 2px solid var(--border-color);
     color: var(--font-color-light);
     padding: 12px 10px 10px 25px;
-    z-index: 0;
 }
 
 .r-calculation .r-title {
@@ -72,6 +103,7 @@ html, body {
     overflow: hidden;
     white-space: nowrap;
     max-width: 85%;
+    font-weight: 500;
 }
 
 .r-calculation .r-date {
@@ -157,6 +189,30 @@ html, body {
 }
 
 /* === Active Calculation === */
+#active-empty {
+    width: 96%;
+    border-radius: 5px;
+    border: 2px dotted var(--border-color-light);
+    list-style: none;
+    padding: 60px 0;
+    text-align: center;
+}
+
+#active-empty.inactive {
+    display: none;
+}
+
+#active-empty i {
+    opacity: 30%;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+#active-empty div {
+    opacity: 50%;
+    font-weight: 400;
+}
+
 .active-container {
     display: inline-block;
     align-items: baseline;
@@ -203,7 +259,7 @@ html, body {
 .title-date .a-title {
     font-size: 19;
     opacity: 97%;
-    font-weight: 400;
+    font-weight: 500;
 }
 
 .edit-icon-container .edit-icon {
@@ -289,15 +345,15 @@ html, body {
 }
 
 .add-modal .add-heading {
-    padding-bottom: 18px;
+    padding-bottom: 5px;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
 .add-modal .add-heading .heading {
-    font-size: 21px;
-    font-weight: 300;
+    font-size: 18px;
+    font-weight: 500;
     pointer-events: none;
 }
 
@@ -318,11 +374,14 @@ html, body {
 }
 
 .add-modal .title-bar {
-    width: 100%;
-    background-color: var(--body-color);
-    border-radius: 35px;
+    height: 40px;
+    border: 2px solid var(--border-color-light);
     display: flex;
+    align-items: center;
     justify-content: center;
+    padding: 5px;
+    border-radius: 7px;
+    width: 100%;
     margin-top: 15px;
 }
 
@@ -330,7 +389,7 @@ html, body {
     border: none;
     background-color: transparent;
     height: 50px;
-    width: 93%;
+    width: 95%;
     font-size: 15px;
 }
 
@@ -345,14 +404,13 @@ html, body {
 }
 
 .add-modal-button {
-    cursor: pointer;
-    border: none;
     background-color: var(--primary-color);
+    border: none;
     color: white;
-    padding: 14px 35px;
-    font-size: 16px;
-    font-weight: 600;
-    border-radius: 15px;
+    padding: 15px 40px;
+    border-radius: 7px;
+    font-weight: 500;
+    cursor: pointer;
 }
 
 /* === Delete Calculation Popup === */
